@@ -25,7 +25,6 @@ router.post('/newCertifi', (req, res) => {
         res.status(200).json(rest)
     })
 }).post('/searchCertifi', (req, res) => {
-    var car;
     certificado.find({ codigo: req.body.codigo }, (err, rest) => {
         rest.forEach(data => {
             carrera.find({ id: data.name_carrer }, (err, rest1) => {
