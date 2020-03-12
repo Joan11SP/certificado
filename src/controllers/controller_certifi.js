@@ -1,5 +1,6 @@
 const express = require('express'),
     certificado = require('../models/model_certifi'),
+    carrera = require('../models/model_carrer')
     router = express.Router();
 
 router.post('/newCertifi', (req, res) => {
@@ -8,12 +9,14 @@ router.post('/newCertifi', (req, res) => {
         codigo: body.codigo,
         names: body.names,
         dni: body.dni,
-        name_carrer: body.name_carrer,
+        name_carrer: body.id,
         name_project: body.name_project,
         barrio: body.barrio,
         parroquia: body.parroquia,
         canton: body.canton,
-        horas: body.horas
+        horas: body.horas,
+        date_inicio:body.date_inicio,
+        date_fin:body.date_fin
     }, (err,rest) => {
         if (err) {
             console.error(err)
@@ -23,6 +26,13 @@ router.post('/newCertifi', (req, res) => {
     })
 }).post('/searchCertifi',(req,res)=>{
     certificado.find({codigo:req.body.codigo},(err,rest)=>{
+        rest.forEach(data=>{
+            carrera.find({id:data.name_carrer},(err,rest1)=>{
+                rest1.forEach(data2=>{
+                    data.name_carrer=data2.nameCarrer                   
+                })
+            })
+        })
         if (err) {
             console.error(err)
             throw err;

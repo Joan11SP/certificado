@@ -10,8 +10,10 @@ var certSchema = new Schemas({
     barrio:{type:String,trim:true},
     parroquia:{type:String,trim:true},
     canton:{type:String,trim:true},
-    horas:{type:Number,trim:true}
+    horas:{type:Number,trim:true},
+    date_inicio:{type:Date,trim:true},
+    date_fin:{type:Date,trim:true}
 })
-var certificado = mongo.model('datos_certificado', certSchema);
+var certificado = mongo.model('datos_certificados', certSchema);
 
 module.exports = certificado;
