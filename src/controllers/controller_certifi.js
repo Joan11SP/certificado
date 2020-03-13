@@ -32,12 +32,14 @@ router.post('/newCertifi', (req, res) => {
                     if (data.name_carrer == data2.id) {
                         data.name_carrer = data2.nameCarrer;
                         res.status(200).json(rest)
+                    }else{
+                        res.status(404).json({data:0})
                     }
                 })
             })
         })
         if (err) {
-            res.status(404).json({error:"No existen tales datos"})
+            console.log(err)
             throw err;
         }
     })
