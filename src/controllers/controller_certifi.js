@@ -36,7 +36,11 @@ router.post('/newCertifi', (req, res) => {
                 })
             })
         })
-            res.status(404).send(rest)
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        res.status(404).send(rest)
     })
 })
 

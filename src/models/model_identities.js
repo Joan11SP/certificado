@@ -1,4 +1,4 @@
-const mongo = require('mongoose'),
+/*const mongo = require('mongoose'),
     Schemas = mongo.Schema
 
 var idenSchema = new Schemas({
@@ -9,3 +9,4 @@ var idenSchema = new Schemas({
 var identidades = mongo.model('identidades', idenSchema);
 
 module.exports = identidades;
+*/
