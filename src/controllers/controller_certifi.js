@@ -37,7 +37,7 @@ router.post('/newCertifi', (req, res) => {
             })
         })
         if (err) {
-            console.error(err)
+            res.status(404).json({error:"No existen tales datos"})
             throw err;
         }
     })

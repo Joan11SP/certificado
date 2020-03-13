@@ -6,6 +6,7 @@ var connection = require('../src/conection-mongo/dbconection');
 var routerCertificado= require('../src/Routes/routeData_certifi')
 var routerIdentidades= require('../src/Routes/route_identities');
 var routerCarrer = require('../src/Routes/router_carrer');
+const multer = require('multer')
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended:true}));
@@ -27,7 +28,13 @@ app.use((req, res, next) => {
 
   
 //see petitions 
+const storage=multer.diskStorage({
+    filename:(req,file,cb,filename)=>{
+        cb(null,path.extname(file.originalname))
+    }
+})
 app.use(morgan('dev'));
+app.use(multer({storage:storage}).single('image'));
 
 //routes
 app.use('/api',routerCertificado);

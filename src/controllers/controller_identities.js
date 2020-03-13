@@ -1,15 +1,13 @@
 const express = require('express'),
-    identidades = require('../models/model_identities'),
+    identidades = require('../models/model_identities'),    
     router = express.Router();
 
-router.post('/marcoIdentities',(req,res)=>{
-    identidades.find({codigo:req.body.codigo},(err,rest)=>{
-        if (err) {
-            console.error(err)
-            throw err;
-        }
-        res.status(200).json(rest)
-    })
+router.post('/marcoIdentities',async (req, res) => {
+    const image=new identidades();
+    image.imageISTL = req.body.imageISTL;
+    image.name = req.body.name
+    console.log(image)
+    await image.save();
 })
 
-module.exports=router;
+module.exports = router;
