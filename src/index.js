@@ -22,14 +22,7 @@ app.use((req, res, next) => {
         res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
         res.send();
     });
-  });
-  app.options('*', (req, res) => {
-    // allowed XHR methods  
-    res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
-    res.send();
-});
-
-  
+  });  
 //see petitions 
 app.use(morgan('dev'));
 
