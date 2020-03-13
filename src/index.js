@@ -35,7 +35,7 @@ app.use(morgan('dev'));
 
 //routes
 app.use('/api',routerCertificado);
-app.use('/api',routerIdentidades);
+//app.use('/api',routerIdentidades);
 app.use('/api',routerCarrer);
 //port
 var port = process.env.PORT || 3000
