@@ -37,7 +37,7 @@ router.post('/newCertifi', (req, res) => {
             })
         })
         if(err){
-            console.log(err);
+            res.json(rest);
             throw err;
         }
     })
