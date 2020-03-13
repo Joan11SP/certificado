@@ -6,9 +6,6 @@ var connection = require('../src/conection-mongo/dbconection');
 var routerCertificado= require('../src/Routes/routeData_certifi')
 //var routerIdentidades= require('../src/Routes/route_identities');
 var routerCarrer = require('../src/Routes/router_carrer');
-app.use(body_parser.json());
-app.use(body_parser.urlencoded({extended:true}));
-
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
   
@@ -23,6 +20,10 @@ app.use((req, res, next) => {
         res.send();
     });
   });  
+app.use(body_parser.json());
+app.use(body_parser.urlencoded({extended:true}));
+
+
 //see petitions 
 app.use(morgan('dev'));
 
