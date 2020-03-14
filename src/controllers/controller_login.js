@@ -23,7 +23,7 @@ router.post('/newPerson', (req, res) => {
     }
 
 }).post('/searchPerson',(req,res)=>{
-    login.find({dni:req.body.dni,role: { $in: ["1"] } }, (err, rest) => {
+    login.find({dni:req.body.dni,password:req.body.password,role: { $in: ["1"] } }, (err, rest) => {
         if(rest.length===0){
             res.json(rest);
         }
