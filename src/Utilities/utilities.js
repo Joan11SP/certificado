@@ -27,7 +27,7 @@ const cedula = (cad) => {
 
 }
 
-const validar = (ced)=>{
+const validar = (ced) =>{
     if(cedula(ced)===true){
         return true
     }
