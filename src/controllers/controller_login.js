@@ -1,7 +1,7 @@
 const express = require('express'),
     login = require('../models/model_login'),
     validar = require('../Utilities/utilities'),
-    role = require('../models/model_role')
+    role = require('../models/model_role'),
     router = express.Router();
 
 router.post('/newPerson', (req, res) => {
@@ -10,12 +10,13 @@ router.post('/newPerson', (req, res) => {
         login.insertMany({
             names: body.names,
             dni: body.dni,
-            genero:body.genero ,
-            telefono:body.telefono ,
+            genero:body.genero,
+            telefono:body.telefono,
             role:body.role,
             password: body.password
         },(err,rest)=>{
             if(err){
+                console.log(err)
                 throw err;
             }
             res.status(200).json(rest)
@@ -38,7 +39,7 @@ router.post('/newPerson', (req, res) => {
             })
         })
         if(err){
-            res.json(rest);
+            console.log(err)
             throw err;
         }
     })
