@@ -1,7 +1,6 @@
 {
   "name": "certificado",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,5 +17,14 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joan11SP/certificado.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Joan11SP/certificado/issues"
+  },
+  "homepage": "https://github.com/Joan11SP/certificado#readme",
+  "description": ""
 }

@@ -43,6 +43,18 @@ router.post('/newPerson', (req, res) => {
             throw err;
         }
     })
+}).post('/getLogin',(req,res)=>{
+    login.find({dni:req.body.dni,password:req.body.password,role: { $in: ["1"] } }, (err, rest) => {
+        if(rest.length===1){
+            res.status(200).json({mensaje:"Correcto"});
+        }else{
+            res.json(rest);
+        }
+        if(err){
+            console.log(err)
+            throw err;
+        }
+    })
 })
 
 module.exports = router;
