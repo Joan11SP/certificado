@@ -44,7 +44,7 @@ router.post('/newPerson', (req, res) => {
         }
     })
 }).post('/getLogin',(req,res)=>{
-    login.find({dni:req.body.dni,password:req.body.password,role: { $in: ["1"] } }, (err, rest) => {
+    login.find({dni:req.body.dni,password:req.body.password}, (err, rest) => {
         if(rest.length===1){
             rest.forEach(data=>{
                 res.status(200).json([data.names,data.role])
