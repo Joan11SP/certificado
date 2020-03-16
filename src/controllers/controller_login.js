@@ -46,7 +46,9 @@ router.post('/newPerson', (req, res) => {
 }).post('/getLogin',(req,res)=>{
     login.find({dni:req.body.dni,password:req.body.password,role: { $in: ["1"] } }, (err, rest) => {
         if(rest.length===1){
-            res.status(200).json({mensaje:"Correcto"});
+            rest.forEach(data=>{
+                res.status(200).json(data.names)
+            })
         }else{
             res.json(rest);
         }
