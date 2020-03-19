@@ -24,7 +24,7 @@ router.post('/newPerson', (req, res) => {
     }
 
 }).post('/searchPerson',(req,res)=>{
-    login.find({dni:req.body.dni,password:req.body.password,role: { $in: ["1"] } }, (err, rest) => {
+    login.find({dni:req.body.dni}, (err, rest) => {
         if(rest.length===0){
             res.json(rest);
         }
@@ -54,6 +54,23 @@ router.post('/newPerson', (req, res) => {
             console.log(err)
             throw err;
         }
+    })
+}).post('/updatePerson',(req,res)=>{
+    var body=req.body
+    login.updateMany({dni:body.dni}, {
+        $set: {
+            names: body.names,
+            genero:body.genero,
+            telefono:body.telefono,
+            role:body.role,
+            password: body.password
+        }
+    }, (err, docs) => {
+        if (err) {
+            console.error(err);
+            throw err;
+        }
+        res.status(200).json(docs)
     })
 })
 

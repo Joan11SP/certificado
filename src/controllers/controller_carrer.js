@@ -14,7 +14,7 @@ router.post('/newCarrer',(req,res)=>{
         }
         res.status(200).json(rest)
     })
-}).post('/searchCarrer',(req,res)=>{
+}).get('/searchCarrer',(req,res)=>{
     carrera.find({},(err,rest)=>{
         if (err) {
             console.error(err)

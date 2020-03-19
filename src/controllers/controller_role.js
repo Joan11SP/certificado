@@ -13,7 +13,7 @@ router.post('/newRole',(req,res)=>{
         }
         res.status(200).json(rest)
     })
-}).post('/searchRole',(req,res)=>{
+}).get('/searchRole',(req,res)=>{
     role.find({},(err,rest)=>{
         if (err) {
             console.error(err)

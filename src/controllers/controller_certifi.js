@@ -44,6 +44,29 @@ router.post('/newCertifi', (req, res) => {
             throw err;
         }
     })
+}).post('/updateCertifi',(req,res)=>{
+    var body=req.body
+    certificado.updateMany({codigo:body.codigo}, {
+        $set: {
+            codigo: body.codigo,
+            names: body.names,
+            dni: body.dni,
+            name_carrer: body.id,
+            name_project: body.name_project,
+            barrio: body.barrio,
+            parroquia: body.parroquia,
+            canton: body.canton,
+            horas: body.horas,
+            date_inicio: body.date_inicio,
+            date_fin: body.date_fin
+        }
+    }, (err, docs) => {
+        if (err) {
+            console.error(err);
+            throw err;
+        }
+        res.status(200).json(docs)
+    })
 })
 
 module.exports = router;
