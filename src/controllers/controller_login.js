@@ -6,10 +6,10 @@ const express = require('express'),
 
 router.post('/newPerson', (req, res) => {
     var body = req.body
-    login.find({ dni: body.dni }, (err, rest1) => {
-        if (validar(body.dni) === true) {
-            rest1.forEach(data => {
-                if (data.dni !== body.dni) {
+    if (validar(body.dni) === true) {
+        login.find({ dni: body.dni }, (err, rest1) => {
+                if (rest1.length!==1) {
+                    console.log("hola")
                     login.insertMany({
                         names: body.names,
                         dni: body.dni,
@@ -24,14 +24,13 @@ router.post('/newPerson', (req, res) => {
                         }
                         res.status(200).json(rest)
                     })
-                } else {
+                } else {                    
                     res.json({ mensaje: "cedula_existe" })
                 }
-            })
-        } else {
-            res.json({ mensaje: "cedula_incorrecta" })
-        }
-    })
+        })
+    } else {
+        res.json({ mensaje: "cedula_incorrecta" })
+    }
 }).post('/searchPerson', (req, res) => {
     login.find({ dni: req.body.dni }, (err, rest) => {
         if (rest.length === 0) {
@@ -86,12 +85,12 @@ router.post('/newPerson', (req, res) => {
                         res.status(200).json(docs)
                     })
                 }
-                else{
+                else {
                     res.json({ mensaje: "cedula_existe" })
                 }
             })
         }
-        else{
+        else {
             res.json({ mensaje: "cedula_incorrecta" })
         }
     })
