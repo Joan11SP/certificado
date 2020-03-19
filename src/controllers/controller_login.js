@@ -67,8 +67,7 @@ router.post('/newPerson', (req, res) => {
     var body = req.body
     login.find({ dni: body.dni }, (err, rest1) => {
         if (validar(body.dni) === true) {
-            rest1.forEach(data => {
-                if (data.dni !== body.dni) {
+                if (rest1!==1) {
                     login.updateMany({ dni: body.dni }, {
                         $set: {
                             names: body.names,
@@ -88,7 +87,6 @@ router.post('/newPerson', (req, res) => {
                 else {
                     res.json({ mensaje: "cedula_existe" })
                 }
-            })
         }
         else {
             res.json({ mensaje: "cedula_incorrecta" })
