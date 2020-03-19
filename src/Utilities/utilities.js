@@ -29,7 +29,11 @@ const cedula = (cad) => {
 
 const validar = (ced) =>{
     if(cedula(ced)===true){
+        console.log('correcto')
         return true
+    }else{
+        console.log('Incorrecto')
+        return false
     }
 }
 

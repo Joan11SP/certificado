@@ -2,12 +2,12 @@ const express = require('express');
 const body_parser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
-var connection = require('../src/conection-mongo/dbconection');
+require('../src/conection-mongo/dbconection');
 var routerCertificado= require('../src/Routes/routeData_certifi')
-//var routerIdentidades= require('../src/Routes/route_identities');
 var routerLogin = require('../src/Routes/router_login')
 var routerCarrer = require('../src/Routes/router_carrer');
 var routerRole = require('../src/Routes/router_role')
+require('dotenv').config();
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
   

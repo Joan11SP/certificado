@@ -6,26 +6,35 @@ const express = require('express'),
 
 router.post('/newPerson', (req, res) => {
     var body = req.body
-    if(validar(body.dni)===true){
-        login.insertMany({
-            names: body.names,
-            dni: body.dni,
-            genero:body.genero,
-            telefono:body.telefono,
-            role:body.role,
-            password: body.password
-        },(err,rest)=>{
-            if(err){
-                console.log(err)
-                throw err;
-            }
-            res.status(200).json(rest)
-        })
-    }
-
-}).post('/searchPerson',(req,res)=>{
-    login.find({dni:req.body.dni}, (err, rest) => {
-        if(rest.length===0){
+    login.find({ dni: body.dni }, (err, rest1) => {
+        if (validar(body.dni) === true) {
+            rest1.forEach(data => {
+                if (data.dni !== body.dni) {
+                    login.insertMany({
+                        names: body.names,
+                        dni: body.dni,
+                        genero: body.genero,
+                        telefono: body.telefono,
+                        role: body.role,
+                        password: body.password
+                    }, (err, rest) => {
+                        if (err) {
+                            console.log(err)
+                            throw err;
+                        }
+                        res.status(200).json(rest)
+                    })
+                } else {
+                    res.json({ mensaje: "cedula_existe" })
+                }
+            })
+        } else {
+            res.json({ mensaje: "cedula_incorrecta" })
+        }
+    })
+}).post('/searchPerson', (req, res) => {
+    login.find({ dni: req.body.dni }, (err, rest) => {
+        if (rest.length === 0) {
             res.json(rest);
         }
         rest.forEach(data => {
@@ -38,40 +47,55 @@ router.post('/newPerson', (req, res) => {
                 })
             })
         })
-        if(err){
+        if (err) {
             console.log(err)
             throw err;
         }
     })
-}).post('/getLogin',(req,res)=>{
-    login.find({dni:req.body.dni,password:req.body.password},{dni:1,role:1}, (err, rest) => {
-        if(rest.length===1){
-                res.status(200).json(rest)
-        }else{
+}).post('/getLogin', (req, res) => {
+    login.find({ dni: req.body.dni, password: req.body.password }, { dni: 1, role: 1 }, (err, rest) => {
+        if (rest.length === 1) {
+            res.status(200).json(rest)
+        } else {
             res.json(rest);
         }
-        if(err){
+        if (err) {
             console.log(err)
             throw err;
         }
     })
-}).post('/updatePerson',(req,res)=>{
-    var body=req.body
-    login.updateMany({dni:body.dni}, {
-        $set: {
-            names: body.names,
-            genero:body.genero,
-            telefono:body.telefono,
-            role:body.role,
-            password: body.password
+}).post('/updatePerson', (req, res) => {
+    var body = req.body
+    login.find({ dni: body.dni }, (err, rest1) => {
+        if (validar(body.dni) === true) {
+            rest1.forEach(data => {
+                if (data.dni !== body.dni) {
+                    login.updateMany({ dni: body.dni }, {
+                        $set: {
+                            names: body.names,
+                            genero: body.genero,
+                            telefono: body.telefono,
+                            role: body.role,
+                            password: body.password
+                        }
+                    }, (err, docs) => {
+                        if (err) {
+                            console.error(err);
+                            throw err;
+                        }
+                        res.status(200).json(docs)
+                    })
+                }
+                else{
+                    res.json({ mensaje: "cedula_existe" })
+                }
+            })
         }
-    }, (err, docs) => {
-        if (err) {
-            console.error(err);
-            throw err;
+        else{
+            res.json({ mensaje: "cedula_incorrecta" })
         }
-        res.status(200).json(docs)
     })
+
 })
 
 module.exports = router;
