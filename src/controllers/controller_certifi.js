@@ -48,7 +48,7 @@ router.post('/newCertifi', (req, res) => {
             throw err;
         }
     })
-}).post('/updateCertifi', (req, res) => {
+})/*.post('/updateCertifi', (req, res) => {
     var body = req.body
     if (validar(body.dni) === true) {
         certificado.find({ codigo: body.codigo }, (err, rest) => {
@@ -86,5 +86,5 @@ router.post('/newCertifi', (req, res) => {
     }
 
 })
-
+*/
 module.exports = router;
