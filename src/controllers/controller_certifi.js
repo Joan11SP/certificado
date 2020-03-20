@@ -41,20 +41,11 @@ router.post('/newCertifi', (req, res) => {
         if (rest.length === 0) {
             res.json(rest);
         }
-        rest.forEach(data => {
-            carrera.find({ id: data.name_carrer }, (err, rest1) => {
-                rest1.forEach(data2 => {
-                    if (data.name_carrer == data2.id) {
-                        data.name_carrer = data2.nameCarrer;
-                        res.status(200).json(rest)
-                    }
-                })
-            })
-        })
         if (err) {
             res.json(rest);
             throw err;
         }
+        res.status(200).json(rest)
     })
 }).post('/updateCertifi', (req, res) => {
     var body = req.body
