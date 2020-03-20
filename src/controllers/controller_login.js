@@ -36,11 +36,11 @@ router.post('/newPerson', (req, res) => {
         if (rest.length === 0) {
             res.json(rest);
         }
-        res.status(200).json(rest)
         if (err) {
             console.log(err)
             throw err;
         }
+        res.status(200).json(rest)
     })
 }).post('/getLogin', (req, res) => {
     login.find({ dni: req.body.dni, password: req.body.password }, { dni: 1, role: 1 }, (err, rest) => {
