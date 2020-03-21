@@ -11,7 +11,9 @@ router.post('/newRole',(req,res)=>{
             console.error(err)
             throw err;
         }
-        res.status(200).json(rest)
+        else{
+            res.status(200).json(rest)
+        }
     })
 }).get('/searchRole',(req,res)=>{
     role.find({},(err,rest)=>{
@@ -19,7 +21,9 @@ router.post('/newRole',(req,res)=>{
             console.error(err)
             throw err;
         }
-        res.status(200).json(rest)
+        else{
+            res.status(200).json(rest)
+        }
     })
 })
 

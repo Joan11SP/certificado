@@ -12,7 +12,9 @@ router.post('/newCarrer',(req,res)=>{
             console.error(err)
             throw err;
         }
-        res.status(200).json(rest)
+        else{
+            res.status(200).json(rest)
+        }
     })
 }).get('/searchCarrer',(req,res)=>{
     carrera.find({},(err,rest)=>{
@@ -20,7 +22,9 @@ router.post('/newCarrer',(req,res)=>{
             console.error(err)
             throw err;
         }
-        res.status(200).json(rest)
+        else{
+            res.status(200).json(rest)
+        }
     })
 })
 

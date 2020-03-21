@@ -2,9 +2,9 @@ const mongo = require('mongoose'),
     Schemas = mongo.Schema
 
 var certSchema = new Schemas({
-    codigo:{type:String,trim:true,unique:true},
+    codigo:{type:String,trim:true},
     names:{type:String,trim:true},
-    dni:{type:String,trim:true,unique:true},
+    dni:{type:String,trim:true},
     name_carrer:{type:String,trim:true},
     name_project:{type:String,trim:true},
     barrio:{type:String,trim:true},
