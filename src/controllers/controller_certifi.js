@@ -48,6 +48,15 @@ router.post('/newCertifi', (req, res) => {
             res.status(200).json(rest)
         }
     })
+}).post('/searchOneCertifi', (req, res) => {
+    certificado.find({codigo:req.body.codigo}, (err, rest) => {
+        if (rest.length === 0) {
+            res.json(rest);
+        }
+        else {
+            res.status(200).json(rest)
+        }
+    })
 }).post('/updateCertifi', (req, res) => {
     var body = req.body
     if (validar(body.dni) === true) {
