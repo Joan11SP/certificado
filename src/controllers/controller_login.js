@@ -47,7 +47,7 @@ router.post('/newPerson', (req, res) => {
         if (rest.length === 1) {
             res.status(200).json(rest)
         } else {
-            res.json(rest);
+            res.json({mensaje:"incorrect"});
         }
         if (err) {
             console.log(err)
