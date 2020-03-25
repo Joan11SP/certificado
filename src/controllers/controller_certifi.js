@@ -96,7 +96,7 @@ router.post('/newCertifi', (req, res) => {
         res.json({ mensaje: "cedula_incorrecta" })
     }
 }).post('/deleteCertifi', (req, res) => {
-    certificado.updateMany({ codigo: req.body.codigo,
+    certificado.updateOne({ codigo: req.body.codigo,
         $set: { status: 0 } }, (err, docs) => {
             if (err) {
                 console.error(err);
