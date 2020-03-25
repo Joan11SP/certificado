@@ -8,7 +8,7 @@ router = express.Router();
 router.post('/newCertifi', (req, res) => {
     var body = req.body;
     if (validar(body.dni) === true) {
-        certificado.find({ codigo: body.codigo }, (err, rest) => {
+        certificado.find({ codigo: body.codigo,status: { $in: [1] } }, (err, rest) => {
             if (rest.length !== 1) {
                 certificado.insertMany({
                     codigo: body.codigo,
@@ -96,14 +96,14 @@ router.post('/newCertifi', (req, res) => {
         res.json({ mensaje: "cedula_incorrecta" })
     }
 }).post('/deleteCertifi', (req, res) => {
-    certificado.remove({ codigo: req.body.codigo }, (err, rest) => {
-        if (err) {
-            throw err;
-        }
-        else {
-            res.status(200).json(rest)
-        }
-    })
+    certificado.updateMany({ codigo: req.body.codigo,
+        $set: { status: 0 } }, (err, docs) => {
+            if (err) {
+                console.error(err);
+                throw err;
+            }
+            res.status(200).json(docs)
+        })
 })
 
 module.exports = router;

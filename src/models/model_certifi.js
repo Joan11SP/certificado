@@ -12,7 +12,8 @@ var certSchema = new Schemas({
     canton:{type:String,trim:true},
     horas:{type:Number,trim:true},
     date_inicio:{type:Date,trim:true},
-    date_fin:{type:Date,trim:true}
+    date_fin:{type:Date,trim:true},
+    status:{type:Number,default:1}
 })
 var certificado = mongo.model('datos_certificados', certSchema);
 
