@@ -7,7 +7,7 @@ var routerCertificado= require('../src/Routes/routeData_certifi')
 var routerLogin = require('../src/Routes/router_login')
 var routerCarrer = require('../src/Routes/router_carrer');
 var routerRole = require('../src/Routes/router_role')
-require('dotenv').config();
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
   
@@ -31,13 +31,12 @@ app.use(morgan('dev'));
 
 //routes
 app.use('/api',routerCertificado);
-//app.use('/api',routerIdentidades);
 app.use('/api',routerCarrer);
 app.use('/api',routerLogin);
 app.use('/api',routerRole);
 //port
 
 var port = process.env.PORT || 3000
-app.listen(port,() =>{
-    console.log('Iniciado', port)
+app.listen(port,()=>{
+    console.log('iniciado', port)
 })
