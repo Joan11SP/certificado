@@ -28,7 +28,7 @@ app.use(body_parser.urlencoded({extended:true}));
 
 //see petitions 
 app.use(morgan('dev'));
-
+app.use(cors())
 //routes
 app.use('/api',routerCertificado);
 app.use('/api',routerCarrer);
